@@ -1,0 +1,45 @@
+{
+    "name": "fligno/gitlab-sdk",
+    "description": "Gitlab REST API Laravel-based SDK",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "James Carlo S. Luchavez",
+            "email": "jamescarlo.luchavez@fligno.com",
+            "homepage": "https://www.linkedin.com/in/jsluchavez/"
+        }
+    ],
+    "homepage": "https://github.com/fligno/gitlab-sdk",
+    "keywords": ["Laravel", "GitlabSdk"],
+    "require": {
+        "illuminate/support": "~7|~8"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "phpunit/phpunit": "~9.0",
+        "orchestra/testbench": "~5|~6"
+    },
+    "autoload": {
+        "files": [
+            "helpers/CustomHelpers.php"
+        ],
+        "psr-4": {
+            "Fligno\\GitlabSdk\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fligno\\GitlabSdk\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Fligno\\GitlabSdk\\GitlabSdkServiceProvider"
+            ],
+            "aliases": {
+                "GitlabSdk": "Fligno\\GitlabSdk\\Facades\\GitlabSdk"
+            }
+        }
+    }
+}
