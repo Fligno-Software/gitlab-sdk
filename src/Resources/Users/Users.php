@@ -17,7 +17,7 @@ class Users extends BaseResource
      */
     #[Pure] public function all(): GetAllUsers
     {
-        return new GetAllUsers($this->gitlabSdk);
+        return new GetAllUsers($this->getGitlabSdk());
     }
 
     /**
@@ -25,7 +25,7 @@ class Users extends BaseResource
      */
     #[Pure] public function current(): GetCurrentUser
     {
-        return new GetCurrentUser($this->gitlabSdk);
+        return new GetCurrentUser($this->getGitlabSdk());
     }
 
     /**
@@ -33,6 +33,6 @@ class Users extends BaseResource
      */
     #[Pure] public function get(): GetOneUser
     {
-        return new GetOneUser($this->gitlabSdk);
+        return new GetOneUser($this->getGitlabSdk());
     }
 }

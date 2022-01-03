@@ -17,6 +17,6 @@ class Packages extends BaseResource
      */
     #[Pure] public function allPackages(): GetAllPackages
     {
-        return new GetAllPackages($this->gitlabSdk);
+        return new GetAllPackages($this->getGitlabSdk());
     }
 }

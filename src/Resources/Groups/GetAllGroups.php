@@ -18,6 +18,6 @@ class GetAllGroups extends BaseResource
      */
     public function __invoke(): PromiseInterface|Response
     {
-            return $this->gitlabSdk->makeRequest(false, 'groups');
+            return $this->getGitlabSdk()->makeRequest(false, 'groups');
     }
 }

@@ -11,6 +11,14 @@ use Fligno\GitlabSdk\GitlabSdk;
  */
 abstract class BaseResource
 {
-    public function __construct(public GitlabSdk $gitlabSdk)
+    public function __construct(protected GitlabSdk $gitlabSdk)
     {}
+
+    /**
+     * @return GitlabSdk
+     */
+    public function getGitlabSdk(): GitlabSdk
+    {
+        return $this->gitlabSdk;
+    }
 }

@@ -18,6 +18,6 @@ class GetCurrentUser extends BaseResource
      */
     public function __invoke(): PromiseInterface|Response
     {
-        return $this->gitlabSdk->makeRequest(false, 'user');
+        return $this->getGitlabSdk()->makeRequest(false, 'user');
     }
 }

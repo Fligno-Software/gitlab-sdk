@@ -2,7 +2,6 @@
 
 namespace Fligno\GitlabSdk;
 
-use Fligno\GitlabSdk\Resources\Composer\Composer;
 use Fligno\GitlabSdk\Resources\Groups\Groups;
 use Fligno\GitlabSdk\Resources\Packages\Packages;
 use Fligno\GitlabSdk\Resources\Users\Users;
@@ -42,7 +41,7 @@ class GitlabSdk
      */
     public function getUrl(): string
     {
-        return 'https://' . config('gitlab-sdk.api_url');
+        return 'https://' . config('gitlab-sdk.url');
     }
 
     /**
@@ -78,7 +77,7 @@ class GitlabSdk
 
         // Prepare HTTP call
 
-        $response = Http::withHeaders(['PRIVATE-TOKEN' => $privateToken])->bodyFormat('json');
+        $response = Http::withHeaders(['PRIVATE-TOKEN' => $privateToken]);
 
         // Initiate HTTP call
 
@@ -93,14 +92,6 @@ class GitlabSdk
     }
 
     /***** RESOURCES *****/
-
-    /**
-     * @return Composer
-     */
-    #[Pure] public function composer(): Composer
-    {
-        return new Composer($this);
-    }
 
     /**
      * @return Groups
