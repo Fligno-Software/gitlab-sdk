@@ -69,11 +69,8 @@ class GitlabSdk
         }
 
         // Prepare Private Token
+
         $privateToken = $this->getPrivateToken();
-
-        // Prepare Data
-
-        $data = array_filter_recursive($data);
 
         // Prepare HTTP call
 
