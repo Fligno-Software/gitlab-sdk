@@ -40,6 +40,10 @@
             "aliases": {
                 "GitlabSdk": "Fligno\\GitlabSdk\\Facades\\GitlabSdk"
             }
+        },
+        "branch-alias": {
+            "dev-master": "1.0.x-dev",
+            "dev-develop": "1.0.x-dev"
         }
     }
 }
