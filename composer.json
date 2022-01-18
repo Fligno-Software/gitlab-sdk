@@ -12,6 +12,7 @@
     "homepage": "https://github.com/fligno/gitlab-sdk",
     "keywords": ["Laravel", "GitlabSdk"],
     "require": {
+        "php": "^8.0",
         "illuminate/support": "~7|~8"
     },
     "require-dev": {
@@ -40,6 +41,10 @@
             "aliases": {
                 "GitlabSdk": "Fligno\\GitlabSdk\\Facades\\GitlabSdk"
             }
+        },
+        "branch-alias": {
+            "dev-master": "1.0.x-dev",
+            "dev-develop": "1.0.x-dev"
         }
     }
 }
