@@ -4,6 +4,13 @@ namespace Fligno\GitlabSdk\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * Class GitlabSdk
+ *
+ * @author James Carlo Luchavez <jamescarlo.luchavez@fligno.com>
+ *
+ * @see \Fligno\GitlabSdk\GitlabSdk
+ */
 class GitlabSdk extends Facade
 {
     /**

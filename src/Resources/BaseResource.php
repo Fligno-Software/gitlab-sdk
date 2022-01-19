@@ -2,7 +2,7 @@
 
 namespace Fligno\GitlabSdk\Resources;
 
-use Fligno\GitlabSdk\GitlabSdk;
+use Fligno\ApiSdkKit\Containers\MakeRequest;
 
 /**
  * Class BaseResource
@@ -11,14 +11,14 @@ use Fligno\GitlabSdk\GitlabSdk;
  */
 abstract class BaseResource
 {
-    public function __construct(protected GitlabSdk $gitlabSdk)
+    public function __construct(protected MakeRequest $makeRequest)
     {}
 
     /**
-     * @return GitlabSdk
+     * @return MakeRequest
      */
-    public function getGitlabSdk(): GitlabSdk
+    public function getMakeRequest(): MakeRequest
     {
-        return $this->gitlabSdk;
+        return $this->makeRequest;
     }
 }
