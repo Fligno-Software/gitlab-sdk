@@ -2,15 +2,14 @@
 
 namespace Fligno\GitlabSdk;
 
+use Fligno\ApiSdkKit\Abstracts\BaseApiSdkContainer;
+use Fligno\ApiSdkKit\Containers\MakeRequest;
+use Fligno\GitlabSdk\Headers\PrivateToken;
 use Fligno\GitlabSdk\Resources\Groups\Groups;
 use Fligno\GitlabSdk\Resources\Packages\Packages;
 use Fligno\GitlabSdk\Resources\Users\Users;
-use GuzzleHttp\Promise\PromiseInterface;
-use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Http;
-use JetBrains\PhpStorm\Pure;
 
-class GitlabSdk
+class GitlabSdk extends BaseApiSdkContainer
 {
     /**
      * @param string|null $privateToken
@@ -19,6 +18,22 @@ class GitlabSdk
     {}
 
     /***** GETTERS & SETTERS *****/
+
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return 'https://' . config('gitlab-sdk.url');
+    }
+
+    /**
+     * @return string
+     */
+    public function getBaseUrl(): string
+    {
+        return $this->getUrl() . '/api/v4';
+    }
 
     /**
      * @return string|null
@@ -37,55 +52,15 @@ class GitlabSdk
     }
 
     /**
-     * @return string
+     * @return MakeRequest
      */
-    public function getUrl(): string
+    protected function getGitlabMakeRequest(): MakeRequest
     {
-        return 'https://' . config('gitlab-sdk.url');
-    }
+        $header = new PrivateToken();
 
-    /**
-     * @return string
-     */
-    public function getApiUrl(): string
-    {
-        return $this->getUrl() . '/api/v4';
-    }
+        $header->private_token = $this->getPrivateToken();
 
-    /**
-     * @param bool $is_post_method
-     * @param string $append_url
-     * @param array $data
-     * @return PromiseInterface|Response
-     */
-    public function makeRequest(bool $is_post_method = FALSE, string $append_url = '', array $data = []): PromiseInterface|Response
-    {
-        // Prepare URL
-
-        $url = $this->getApiUrl();
-
-        if(empty(trim($append_url)) === FALSE) {
-            $url .= '/' . $append_url;
-        }
-
-        // Prepare Private Token
-
-        $privateToken = $this->getPrivateToken();
-
-        // Prepare HTTP call
-
-        $response = Http::withHeaders(['PRIVATE-TOKEN' => $privateToken]);
-
-        // Initiate HTTP call
-
-        if ($is_post_method) {
-            $response = $response->post($url, $data);
-        }
-        else {
-            $response = $response->get($url, $data);
-        }
-
-        return $response;
+        return $this->getMakeRequest()->setHeaders($header);
     }
 
     /***** RESOURCES *****/
@@ -93,24 +68,24 @@ class GitlabSdk
     /**
      * @return Groups
      */
-    #[Pure] public function groups(): Groups
+    public function groups(): Groups
     {
-        return new Groups($this);
+        return new Groups($this->getGitlabMakeRequest());
     }
 
     /**
      * @return Packages
      */
-    #[Pure] public function packages(): Packages
+    public function packages(): Packages
     {
-        return new Packages($this);
+        return new Packages($this->getGitlabMakeRequest());
     }
 
     /**
      * @return Users
      */
-    #[Pure] public function users(): Users
+    public function users(): Users
     {
-        return new Users($this);
+        return new Users($this->getGitlabMakeRequest());
     }
 }

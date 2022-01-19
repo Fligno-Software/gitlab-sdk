@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'url' => env('GITLAB_URL')
+    'url' => env('GITLAB_URL', 'gitlab.com')
 ];

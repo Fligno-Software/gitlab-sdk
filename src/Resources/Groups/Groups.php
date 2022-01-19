@@ -17,7 +17,7 @@ class Groups extends BaseResource
      */
     #[Pure] public function all(): GetAllGroups
     {
-        return new GetAllGroups($this->getGitlabSdk());
+        return new GetAllGroups($this->getMakeRequest());
     }
 
     /**
@@ -25,6 +25,6 @@ class Groups extends BaseResource
      */
     #[Pure] public function get(): GetOneGroup
     {
-        return new GetOneGroup($this->getGitlabSdk());
+        return new GetOneGroup($this->getMakeRequest());
     }
 }
