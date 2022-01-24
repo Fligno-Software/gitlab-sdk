@@ -2,7 +2,7 @@
 
 namespace Fligno\GitlabSdk\Data\Groups;
 
-use Fligno\ApiSdkKit\Abstracts\BaseJsonSerializable;
+use Fligno\StarterKit\Abstracts\BaseJsonSerializable;
 use Fligno\GitlabSdk\Traits\Attributes\OffSetBasedPaginationTrait;
 
 /**
