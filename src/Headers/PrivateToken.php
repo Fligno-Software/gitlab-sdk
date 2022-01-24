@@ -2,7 +2,7 @@
 
 namespace Fligno\GitlabSdk\Headers;
 
-use Fligno\ApiSdkKit\Abstracts\BaseJsonSerializable;
+use Fligno\StarterKit\Abstracts\BaseJsonSerializable;
 use Illuminate\Support\Str;
 
 /**
