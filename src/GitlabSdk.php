@@ -3,8 +3,6 @@
 namespace Fligno\GitlabSdk;
 
 use Fligno\ApiSdkKit\Abstracts\BaseApiSdkContainer;
-use Fligno\ApiSdkKit\Containers\MakeRequest;
-use Fligno\GitlabSdk\Headers\PrivateToken;
 use Fligno\GitlabSdk\Resources\Groups\Groups;
 use Fligno\GitlabSdk\Resources\Packages\Packages;
 use Fligno\GitlabSdk\Resources\Users\Users;
@@ -15,7 +13,11 @@ class GitlabSdk extends BaseApiSdkContainer
      * @param string|null $privateToken
      */
     public function __construct(protected string|null $privateToken)
-    {}
+    {
+        $this->setHeaders([
+            'PRIVATE-TOKEN' => $this->getPrivateToken()
+        ]);
+    }
 
     /***** GETTERS & SETTERS *****/
 
@@ -38,29 +40,9 @@ class GitlabSdk extends BaseApiSdkContainer
     /**
      * @return string|null
      */
-    public function getPrivateToken(): string|null
+    public function getPrivateToken(): ?string
     {
         return $this->privateToken;
-    }
-
-    /**
-     * @param string|null $privateToken
-     */
-    public function setPrivateToken(?string $privateToken): void
-    {
-        $this->privateToken = $privateToken;
-    }
-
-    /**
-     * @return MakeRequest
-     */
-    protected function getGitlabMakeRequest(): MakeRequest
-    {
-        $header = new PrivateToken();
-
-        $header->private_token = $this->getPrivateToken();
-
-        return $this->getMakeRequest()->setHeaders($header);
     }
 
     /***** RESOURCES *****/
@@ -70,7 +52,7 @@ class GitlabSdk extends BaseApiSdkContainer
      */
     public function groups(): Groups
     {
-        return new Groups($this->getGitlabMakeRequest());
+        return new Groups($this->getMakeRequest());
     }
 
     /**
@@ -78,7 +60,7 @@ class GitlabSdk extends BaseApiSdkContainer
      */
     public function packages(): Packages
     {
-        return new Packages($this->getGitlabMakeRequest());
+        return new Packages($this->getMakeRequest());
     }
 
     /**
@@ -86,6 +68,6 @@ class GitlabSdk extends BaseApiSdkContainer
      */
     public function users(): Users
     {
-        return new Users($this->getGitlabMakeRequest());
+        return new Users($this->getMakeRequest());
     }
 }
