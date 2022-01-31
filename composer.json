@@ -22,9 +22,6 @@
         "orchestra/testbench": "~5|~6"
     },
     "autoload": {
-        "files": [
-            "helpers/gitlab-sdk-helper.php"
-        ],
         "psr-4": {
             "Fligno\\GitlabSdk\\": "src/"
         }
