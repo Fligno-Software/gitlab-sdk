@@ -13,6 +13,8 @@ class GitlabSdkServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        parent::register();
+
         $this->mergeConfigFrom(__DIR__.'/../config/gitlab-sdk.php', 'gitlab-sdk');
 
         // Register the service the package provides.
