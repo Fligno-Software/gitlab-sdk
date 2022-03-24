@@ -17,12 +17,12 @@ class GetAllPackages extends BaseResource
     /**
      * @param int $groupId
      * @param GetAllPackagesAttributes|null $attributes
-     * @return PromiseInterface|Response
+     * @return AuditLog|PromiseInterface|Response
      */
-    public function __invoke(int $groupId, ?GetAllPackagesAttributes $attributes = null): PromiseInterface|Response
+    public function __invoke(int $groupId, ?GetAllPackagesAttributes $attributes = null): AuditLog|PromiseInterface|Response
     {
         $appendUrl = 'groups/' . $groupId . '/packages';
 
-        return $this->getMakeRequest()->setData($attributes)->executeGet($appendUrl);
+        return $this->getMakeRequest()->setData($attributes)->executeGet($appendUrl, null, false);
     }
 }
