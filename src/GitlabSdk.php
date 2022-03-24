@@ -3,11 +3,17 @@
 namespace Fligno\GitlabSdk;
 
 use Fligno\ApiSdkKit\Abstracts\BaseApiSdkContainer;
+use Fligno\ApiSdkKit\Interfaces\CanGetHealthCheckInterface;
 use Fligno\GitlabSdk\Resources\Groups\Groups;
 use Fligno\GitlabSdk\Resources\Packages\Packages;
 use Fligno\GitlabSdk\Resources\Users\Users;
+use Fligno\StarterKit\Abstracts\BaseJsonSerializable;
+use GuzzleHttp\Promise\PromiseInterface;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Client\Response;
+use Illuminate\Support\Collection;
 
-class GitlabSdk extends BaseApiSdkContainer
+class GitlabSdk extends BaseApiSdkContainer implements CanGetHealthCheckInterface
 {
     /**
      * @param string|null $privateToken
@@ -69,5 +75,14 @@ class GitlabSdk extends BaseApiSdkContainer
     public function users(): Users
     {
         return new Users($this->getMakeRequest());
+    }
+
+    /**
+     * @param BaseJsonSerializable|Collection|array|null $data
+     * @return Model|BaseJsonSerializable|PromiseInterface|Response|Collection|array
+     */
+    public function getHealthCheck(array|Collection|BaseJsonSerializable $data = null): Model|BaseJsonSerializable|PromiseInterface|Response|Collection|array
+    {
+        return $this->getMakeRequest()->executeGet('user');
     }
 }

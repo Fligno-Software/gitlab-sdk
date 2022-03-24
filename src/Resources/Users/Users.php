@@ -21,14 +21,6 @@ class Users extends BaseResource
     }
 
     /**
-     * @return GetCurrentUser
-     */
-    #[Pure] public function current(): GetCurrentUser
-    {
-        return new GetCurrentUser($this->getMakeRequest());
-    }
-
-    /**
      * @return GetOneUser
      */
     #[Pure] public function get(): GetOneUser

@@ -2,6 +2,7 @@
 
 namespace Fligno\GitlabSdk\Resources\Groups;
 
+use Fligno\ApiSdkKit\Models\AuditLog;
 use Fligno\GitlabSdk\Data\Groups\GetAllGroupsAttributes;
 use Fligno\GitlabSdk\Resources\BaseResource;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -16,10 +17,10 @@ class GetAllGroups extends BaseResource
 {
     /**
      * @param GetAllGroupsAttributes|null $attributes
-     * @return PromiseInterface|Response
+     * @return AuditLog|PromiseInterface|Response
      */
-    public function __invoke(?GetAllGroupsAttributes $attributes = null): PromiseInterface|Response
+    public function __invoke(?GetAllGroupsAttributes $attributes = null): AuditLog|PromiseInterface|Response
     {
-        return $this->getMakeRequest()->setData($attributes)->executeGet('groups');
+        return $this->getMakeRequest()->setData($attributes)->executeGet('groups', null, false);
     }
 }
