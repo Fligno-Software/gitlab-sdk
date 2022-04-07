@@ -18,9 +18,12 @@ class GitlabSdkServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/gitlab-sdk.php', 'gitlab-sdk');
 
         // Register the service the package provides.
-        $this->app->singleton('gitlab-sdk', function ($app, $params) {
-            return new GitlabSdk($params['private_token']);
-        });
+        $this->app->singleton(
+            'gitlab-sdk',
+            function ($app, $params) {
+                return new GitlabSdk($params['private_token']);
+            }
+        );
     }
 
     /**
@@ -41,9 +44,12 @@ class GitlabSdkServiceProvider extends ServiceProvider
     protected function bootForConsole(): void
     {
         // Publishing the configuration file.
-        $this->publishes([
+        $this->publishes(
+            [
             __DIR__.'/../config/gitlab-sdk.php' => config_path('gitlab-sdk.php'),
-        ], 'gitlab-sdk.config');
+            ],
+            'gitlab-sdk.config'
+        );
 
         // Publishing the views.
         /*$this->publishes([

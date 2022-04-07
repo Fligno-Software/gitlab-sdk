@@ -12,7 +12,8 @@ use Fligno\ApiSdkKit\Containers\MakeRequest;
 abstract class BaseResource
 {
     public function __construct(protected MakeRequest $makeRequest)
-    {}
+    {
+    }
 
     /**
      * @return MakeRequest
