@@ -74,7 +74,7 @@ class GetAllGroupsAttributes extends BaseJsonSerializable
     public bool|null $owned;
 
     /**
-     * 	Limit to groups where current user has at least this access level
+     *     Limit to groups where current user has at least this access level
      *
      * @var int|null
      */

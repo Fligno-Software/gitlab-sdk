@@ -16,7 +16,7 @@ use Illuminate\Http\Client\Response;
 class GetAllGroups extends BaseResource
 {
     /**
-     * @param GetAllGroupsAttributes|null $attributes
+     * @param  GetAllGroupsAttributes|null $attributes
      * @return AuditLog|PromiseInterface|Response
      */
     public function __invoke(?GetAllGroupsAttributes $attributes = null): AuditLog|PromiseInterface|Response

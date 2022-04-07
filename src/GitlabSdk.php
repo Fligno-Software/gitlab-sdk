@@ -20,12 +20,16 @@ class GitlabSdk extends BaseApiSdkContainer implements CanGetHealthCheckInterfac
      */
     public function __construct(protected string|null $privateToken)
     {
-        $this->setHeaders([
+        $this->setHeaders(
+            [
             'PRIVATE-TOKEN' => $this->getPrivateToken()
-        ]);
+            ]
+        );
     }
 
-    /***** GETTERS & SETTERS *****/
+    /*****
+     * GETTERS & SETTERS
+     *****/
 
     /**
      * @return string
@@ -51,7 +55,9 @@ class GitlabSdk extends BaseApiSdkContainer implements CanGetHealthCheckInterfac
         return $this->privateToken;
     }
 
-    /***** RESOURCES *****/
+    /*****
+     * RESOURCES
+     *****/
 
     /**
      * @return Groups
@@ -78,11 +84,12 @@ class GitlabSdk extends BaseApiSdkContainer implements CanGetHealthCheckInterfac
     }
 
     /**
-     * @param BaseJsonSerializable|Collection|array|null $data
+     * @param  BaseJsonSerializable|Collection|array|null $data
      * @return Model|BaseJsonSerializable|PromiseInterface|Response|Collection|array
      */
-    public function getHealthCheck(array|Collection|BaseJsonSerializable $data = null): Model|BaseJsonSerializable|PromiseInterface|Response|Collection|array
-    {
+    public function getHealthCheck(
+        array|Collection|BaseJsonSerializable $data = null
+    ): Model|BaseJsonSerializable|PromiseInterface|Response|Collection|array {
         return $this->getMakeRequest()->executeGet('user');
     }
 }
