@@ -6,7 +6,6 @@ use Fligno\ApiSdkKit\Abstracts\BaseApiSdkContainer;
 use Fligno\ApiSdkKit\Interfaces\CanGetHealthCheckInterface;
 use Fligno\GitlabSdk\Resources\Groups\Groups;
 use Fligno\GitlabSdk\Resources\Packages\Packages;
-use Fligno\GitlabSdk\Resources\Users\Users;
 use Fligno\StarterKit\Abstracts\BaseJsonSerializable;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Database\Eloquent\Model;
@@ -73,14 +72,6 @@ class GitlabSdk extends BaseApiSdkContainer implements CanGetHealthCheckInterfac
     public function packages(): Packages
     {
         return new Packages($this->getMakeRequest());
-    }
-
-    /**
-     * @return Users
-     */
-    public function users(): Users
-    {
-        return new Users($this->getMakeRequest());
     }
 
     /**
