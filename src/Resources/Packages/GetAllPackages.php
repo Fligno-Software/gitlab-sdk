@@ -26,6 +26,8 @@ class GetAllPackages extends BaseResource
     ): AuditLog|PromiseInterface|Response {
         $appendUrl = 'groups/' . $groupId . '/packages';
 
-        return $this->getMakeRequest()->setData($attributes)->executeGet($appendUrl, null, false);
+        return $this->getMakeRequest()
+            ->data($attributes)
+            ->executeGet($appendUrl, null, false);
     }
 }

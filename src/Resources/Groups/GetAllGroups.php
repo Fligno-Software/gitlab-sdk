@@ -21,6 +21,8 @@ class GetAllGroups extends BaseResource
      */
     public function __invoke(?GetAllGroupsAttributes $attributes = null): AuditLog|PromiseInterface|Response
     {
-        return $this->getMakeRequest()->setData($attributes)->executeGet('groups', null, false);
+        return $this->getMakeRequest()
+            ->data($attributes)
+            ->executeGet('groups', null, false);
     }
 }
